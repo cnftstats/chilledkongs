@@ -92,7 +92,7 @@ X <- copy(DT)
 X <- X[order(price)][1:100]
 X[, cnft := 1:nrow(X)]
 
-X[, img := sprintf("https://raw.githubusercontent.com/cnftstats/images/main/chilledkongs/chilledkongs%s.png", asset_number)]
+X[, img := sprintf("https://raw.githubusercontent.com/cnftstats/images/main/chilledkongs/chilledkongs%s_large.png", asset_number)]
 
 X[, asset_traits_nice := gsub(":", ": ", gsub(" — ", "</br>", asset_traits))]
 
@@ -111,8 +111,7 @@ max_y <- max(X$price) + min(X$price)*.01
 
 gg <- ggplot(X, aes(cnft, price, customdata = custom_data,
                     text = paste0(asset,
-                                  "</br></br>", paste("Price:", round(price, 0),
-                                                      "</br>Rank:", asset_rank)))) +
+                                  "</br></br>", paste("Price:", round(price, 0))))) +
   geom_point(color = "steelblue3", size = 2) +
   # geom_line(color = "steelblue3", size = 1) +s
   # geom_ribbon(aes(ymin = min_y, ymax = price), fill = "steelblue3", alpha = .5) +
